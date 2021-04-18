@@ -1,0 +1,10 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+
+  background: url('../images/background.jpg');
+  background-attachment: fixed;
+  -moz-background-size: cover; /* Firefox */
+  -webkit-background-size: cover; /* Google Chrome, Safari */
+  -o-background-size: cover; /* Opera */
+  background-size: cover; /* IE */
+}
