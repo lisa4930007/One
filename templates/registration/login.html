@@ -1,12 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Log In{% endblock title %}
 
-{% block content %} 
-<h2>Log In</h2> 
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button class="btn btn-success ml-2"  type="submit">Log In</button>
-</form>
+{% block content %}
+<div class="container p-5">
+	<img src="{% static 'images/logo.png' %}" class="mx-auto d-block w-25" alt="logo">
+	<br/><br/>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-6 col-xl-4 mx-auto mb-1">
+				<input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="form-control" placeholder="帳號" aria-label="帳號" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 col-xl-4 mx-auto mb-1">
+				<input id="id_password" type="password" name="password" autocomplete="current-password" class="form-control" placeholder="密碼" aria-label="密碼" required>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6 col-xl-4 mx-auto m-1">
+			  <button class="btn bg-info btn-block text-white" type="submit">登入</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="row">
+		<div class="col-md-6 col-xl-4 mx-auto m-1">
+		  	<a href="{% url 'social:begin' 'facebook' %}"><button class="btn bg-primary btn-block text-white">以 Facebook 登入</button></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="mx-auto m-1"><a href="{% url 'signup' %}">註冊帳號</a></div>
+	</div>
+</div>
 {% endblock content %}

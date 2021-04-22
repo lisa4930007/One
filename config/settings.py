@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd Party
+    'social_django',
+
+    # Local
     'pages',
-    'accounts'
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -64,10 +69,25 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '2785893508294674' # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '0bab6b2503ceba441ef4bf29a369df2f' # App Secret
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']  # add this
+# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {  # add this
+#     'fields': 'id, name, email, picture.type(large), link'
+# }
+# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [  # add this
+#     ('name', 'name'),
+#     ('email', 'email'),
+#     ('picture', 'picture'),
+#     ('link', 'profile_url'),
+# ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -103,6 +123,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -128,3 +152,4 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
